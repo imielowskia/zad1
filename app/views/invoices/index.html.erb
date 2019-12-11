@@ -2,7 +2,7 @@
 
 <h1>Invoices</h1>
 
-<table>
+<table bgcolor="aqua">
   <thead>
     <tr>
       <th>Data</th>
@@ -23,9 +23,9 @@
     <% if invoice.invoice_items.count > 0 %>
       <tr>
         <td></td>
-        <td>
+        <td colspan="4">
 
-        <table border="1">
+        <table border="1", bgcolor="#5f9ea0">
           <thead>
           <tr>
             <th>Item</th>
@@ -36,13 +36,18 @@
           </thead>
 
           <tbody>
+          <% @suma=0 %>
           <% invoice.invoice_items.each do |invoice_item| %>
             <tr>
               <td><%= invoice_item.item.name %></td>
               <td><%= invoice_item.number %></td>
               <td><%= invoice_item.number*invoice_item.item.price %></td>
             </tr>
+            <% @suma=@suma+invoice_item.number*invoice_item.item.price %>
           <% end %>
+            <tr>
+              <td colspan="3" align="right"> Razem: <%=@suma %> </td>
+            </tr>
           </tbody>
         </table>
         </td>
