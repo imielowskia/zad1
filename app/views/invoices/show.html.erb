@@ -7,7 +7,7 @@
 
 <p>
   <strong>Customer:</strong>
-  <%= @invoice.customer_id %>
+  <%= @invoice.customer.name %>
 </p>
 
 <%= link_to 'Edit', edit_invoice_path(@invoice) %> |

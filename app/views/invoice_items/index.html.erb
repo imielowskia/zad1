@@ -15,8 +15,8 @@
   <tbody>
     <% @invoice_items.each do |invoice_item| %>
       <tr>
-        <td><%= invoice_item.invoice_id %></td>
-        <td><%= invoice_item.item_id %></td>
+        <td><%= invoice_item.invoice.data %> <%= invoice_item.invoice.customer.name %></td>
+        <td><%= invoice_item.item.name %></td>
         <td><%= invoice_item.number %></td>
         <td><%= link_to 'Show', invoice_item %></td>
         <td><%= link_to 'Edit', edit_invoice_item_path(invoice_item) %></td>
