@@ -23,6 +23,14 @@
   <tr>
     <td colspan="4">
 
+      <%= render partial:'invoice', :locals=> {:invoice=>Invoice.new(:customer_id=>@customer.id) }  %>
+    </td>
+
+
+  </tr>
+  <tr>
+    <td colspan="4">
+
       <table class="table table-bordered table-dark">
         <thead>
         <tr>
@@ -75,7 +83,12 @@
 
     </td>
   </tr>
+
   </tbody>
 </table>
+
+
+
 </div>
+
 
