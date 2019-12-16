@@ -37,7 +37,7 @@
   </tr>
   <tr>
     <td colspan="3">
-      <%= render partial: 'item',  %>
+      <%= render partial: 'item', locals: {invoice_item: InvoiceItem.new(invoice_id: @invoice.id)} %>
     </td>
   </tr>
   </tbody>

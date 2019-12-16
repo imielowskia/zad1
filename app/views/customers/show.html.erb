@@ -2,7 +2,7 @@
 <div class="jumbotron">
 
 <h1><%= @customer.name %></h1>
-<table class="table table-bordered table-dark" >
+<table class="table table-bordered table-light" >
   <thead>
   <tr>
 
@@ -20,18 +20,12 @@
     <td><%= link_to 'Edit', edit_customer_path(@customer), class: "btn btn-sm btn-primary" %></td>
     <td><%= link_to 'Back', customers_path, class: "btn btn-sm btn-primary" %></td>
   </tr>
-  <tr>
-    <td colspan="4">
-
-      <%= render partial:'invoice', :locals=> {:invoice=>Invoice.new(:customer_id=>@customer.id) }  %>
-    </td>
-
 
   </tr>
   <tr>
     <td colspan="4">
 
-      <table class="table table-bordered table-dark">
+      <table class="table table-of-contents table-sm">
         <thead>
         <tr>
           <th>Data</th>
@@ -41,17 +35,20 @@
 
         <tbody>
         <% @customer.invoices.each do |invoice| %>
-          <tr>
+          <tr class="table-success">
             <td><%= invoice.data %></td>
             <td><%= invoice.id %></td>
+            <td><%= link_to 'Show', invoice, class: "btn btn-sm btn-secondary" %></td>
+            <td><%= link_to 'Edit', edit_invoice_path(invoice), class: "btn btn-sm btn-secondary" %></td>
+            <td><%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-secondary" %></td>
           </tr>
           <% if invoice.invoice_items.count > 0 %>
             <tr>
               <td colspan="2">
 
-                <table  class="table table-bordered table-light">
+                <table  class="table table-of-contents table-sm">
                   <thead>
-                  <tr>
+                  <tr class="table-primary">
                     <th>Item</th>
                     <th>Number</th>
                     <th>Value</th>
@@ -61,14 +58,15 @@
                   <tbody>
                   <% @suma=0 %>
                   <% invoice.invoice_items.each do |invoice_item| %>
-                    <tr>
+                    <tr class="table-success">
                       <td><%= invoice_item.item.name %></td>
                       <td><%= invoice_item.number %></td>
                       <td><%= (invoice_item.number*invoice_item.item.price).round(2) %></td>
+
                     </tr>
                     <% @suma=@suma+(invoice_item.number*invoice_item.item.price).round(2) %>
                   <% end %>
-                  <tr>
+                  <tr class="table-info">
                     <td colspan="3" align="right"> Razem: <%=@suma %> </td>
                   </tr>
                   </tbody>
@@ -83,6 +81,10 @@
 
     </td>
   </tr>
+  <tr>
+    <td colspan="4">
+      <%= render partial:'invoice', locals: {invoice: Invoice.new(customer_id: @customer.id) }  %>
+    </td>
 
   </tbody>
 </table>

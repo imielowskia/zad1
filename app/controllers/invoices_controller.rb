@@ -28,7 +28,8 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.save
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
+        format.html { redirect_to controller: 'customers', action: 'show', id: @invoice.customer_id }
+        #format.html { render 'customers/show' , customer_id: @invoice.customer_id, status: :created, notice: 'Invoice was successfully created.aaaa' }
         format.json { render :show, status: :created, location: @invoice }
       else
         format.html { render :new }
