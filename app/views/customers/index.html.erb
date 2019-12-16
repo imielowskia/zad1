@@ -24,6 +24,7 @@
         <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-secondary"  %></td>
       </tr>
 
+      <% if customer.invoices.count>0 %>
       <tr>
         <td></td>
         <td colspan="5">
@@ -79,6 +80,7 @@
           </table>
         </td>
       </tr>
+
     <% end %>
   </tbody>
 </table>
