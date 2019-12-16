@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<div class="jumbotron">
 <h1>Customers</h1>
 
-<table border="1", bgcolor="#faebd7" >
+<table class="table table-bordered table-dark" >
   <thead>
     <tr>
       <th>Name</th>
@@ -18,9 +19,9 @@
         <td><%= customer.name %></td>
         <td><%= customer.telephone %></td>
         <td><%= customer.city %></td>
-        <td><%= link_to 'Show', customer %></td>
-        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', customer, class: "btn btn-sm btn-secondary" %></td>
+        <td><%= link_to 'Edit', edit_customer_path(customer), class: "btn btn-sm btn-secondary"  %></td>
+        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-secondary"  %></td>
       </tr>
 
       <% if customer.invoices.count>0 %>
@@ -28,12 +29,11 @@
         <td></td>
         <td colspan="5">
 
-          <table bgcolor="aqua">
+          <table class="table table-bordered table-dark">
             <thead>
             <tr>
               <th>Data</th>
               <th>No</th>
-              <th colspan="3"></th>
             </tr>
             </thead>
 
@@ -42,22 +42,17 @@
               <tr>
                 <td><%= invoice.data %></td>
                 <td><%= invoice.id %></td>
-                <td><%= link_to 'Show', invoice %></td>
-                <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
-                <td><%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
               <% if invoice.invoice_items.count > 0 %>
                 <tr>
-                  <td></td>
-                  <td colspan="4">
+                  <td colspan="2">
 
-                    <table border="1">
+                    <table  class="table table-bordered table-light">
                       <thead>
                       <tr>
                         <th>Item</th>
                         <th>Number</th>
                         <th>Value</th>
-
                       </tr>
                       </thead>
 
@@ -67,9 +62,9 @@
                         <tr>
                           <td><%= invoice_item.item.name %></td>
                           <td><%= invoice_item.number %></td>
-                          <td><%= invoice_item.number*invoice_item.item.price %></td>
+                          <td><%= (invoice_item.number*invoice_item.item.price).round(2) %></td>
                         </tr>
-                        <% @suma=@suma+invoice_item.number*invoice_item.item.price %>
+                        <% @suma=@suma+(invoice_item.number*invoice_item.item.price).round(2) %>
                       <% end %>
                       <tr>
                         <td colspan="3" align="right"> Razem: <%=@suma %> </td>
@@ -83,17 +78,13 @@
             <% end %>
             </tbody>
           </table>
-
-
         </td>
-
       </tr>
-    <% end %>
 
     <% end %>
   </tbody>
 </table>
+  <%= link_to 'New Customer', new_customer_path, class: "btn btn-primary"  %>
+</div>
 
-<br>
 
-<%= link_to 'New Customer', new_customer_path %>
