@@ -2,7 +2,7 @@
 
 <h1>Invoice Items</h1>
 
-<table>
+<table class="table table-bordered table-dark">
   <thead>
     <tr>
       <th>Invoice</th>
@@ -18,10 +18,10 @@
         <td><%= invoice_item.invoice.data %> <%= invoice_item.invoice.customer.name %></td>
         <td><%= invoice_item.item.name %></td>
         <td><%= invoice_item.number %></td>
-        <td><%= invoice_item.number*invoice_item.item.price %> </td>
-        <td><%= link_to 'Show', invoice_item %></td>
-        <td><%= link_to 'Edit', edit_invoice_item_path(invoice_item) %></td>
-        <td><%= link_to 'Destroy', invoice_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= (invoice_item.number*invoice_item.item.price).round(2) %> </td>
+        <td><%= link_to 'Show', invoice_item, class: "btn btn-secondary btn-sm" %></td>
+        <td><%= link_to 'Edit', edit_invoice_item_path(invoice_item), class: "btn btn-secondary btn-sm"  %></td>
+        <td><%= link_to 'Destroy', invoice_item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm"  %></td>
       </tr>
     <% end %>
   </tbody>
@@ -29,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Invoice Item', new_invoice_item_path %>
+<%= link_to 'New Invoice Item', new_invoice_item_path, class: "btn btn-secondary btn-sm"  %>
