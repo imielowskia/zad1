@@ -36,7 +36,7 @@
     <td colspan="3" align="right"> Razem: <%=@suma %> </td>
   </tr>
   <tr>
-    <td colspan="3">
+    <td colspan="2">
       <%= render partial: 'item', locals: {invoice_item: InvoiceItem.new(invoice_id: @invoice.id)} %>
     </td>
   </tr>
@@ -45,3 +45,4 @@
 
 <%= link_to 'Edit', edit_invoice_path(@invoice) , class: "btn btn-secondary" %> |
 <%= link_to 'Back', invoices_path , class: "btn btn-primary" %>
+<%= link_to 'Show', customer_path(Customer.find(@invoice.customer_id)), class: "btn btn-sm btn-secondary" %>

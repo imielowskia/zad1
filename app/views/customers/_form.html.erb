@@ -11,22 +11,10 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :telephone %>
-    <%= form.text_field :telephone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <tr class="table-danger">
+    <td><%= form.text_field :name %></td>
+    <td><%= form.text_field :telephone %></td>
+    <td><%= form.text_field :city %></td>
+    <td colspan="4"><%= form.submit :class=>"btn btn-sm btn-primary"%></td>
+  </tr>
 <% end %>

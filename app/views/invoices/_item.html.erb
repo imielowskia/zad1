@@ -10,23 +10,13 @@
       </ul>
     </div>
   <% end %>
+  <%= form.hidden_field :invoice_id %>
+  <table class="table table-light table-sm">
+    <tr>
+      <td><%= form.collection_select :item_id, Item.all, :id, :name %></td>
+      <td><%= form.text_field :number %></td>
+      <td><%= form.submit :class=>"btn btn-sm btn-primary" %></td>
+    </tr>
+  </table>
 
-  <div class="field">
-    <%= form.label :invoice_id %>
-    <%= form.collection_select :invoice_id, Invoice.all, :id, :customer_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :item_id %>
-    <%= form.collection_select :item_id, Item.all, :id, :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :number %>
-    <%= form.text_field :number %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

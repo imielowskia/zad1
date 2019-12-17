@@ -3,8 +3,8 @@
 <div class="jumbotron">
 <h1>Customers</h1>
 
-<table class="table table-bordered table-dark" >
-  <thead>
+<table class="table table-bordered" >
+  <thead class="table-dark">
     <tr>
       <th>Name</th>
       <th>Telephone</th>
@@ -14,8 +14,9 @@
   </thead>
 
   <tbody>
+  <%= render partial:'form', locals: {customer: Customer.new }  %>
     <% @customers.each do |customer| %>
-      <tr>
+      <tr class="table-warning">
         <td><%= customer.name %></td>
         <td><%= customer.telephone %></td>
         <td><%= customer.city %></td>
@@ -29,9 +30,9 @@
         <td></td>
         <td colspan="5">
 
-          <table class="table table-bordered table-dark">
-            <thead>
-            <tr>
+          <table class="table table-bordered table-active ">
+            <thead class="table-info">
+            <tr class="table-sm">
               <th>Data</th>
               <th>No</th>
             </tr>
@@ -39,12 +40,12 @@
 
             <tbody>
             <% customer.invoices.each do |invoice| %>
-              <tr>
+              <tr class="table-sm">
                 <td><%= invoice.data %></td>
                 <td><%= invoice.id %></td>
               </tr>
               <% if invoice.invoice_items.count > 0 %>
-                <tr>
+                <tr class="table-sm">
                   <td colspan="2">
 
                     <table  class="table table-bordered table-light">
@@ -67,7 +68,7 @@
                         <% @suma=@suma+(invoice_item.number*invoice_item.item.price).round(2) %>
                       <% end %>
                       <tr>
-                        <td colspan="3" align="right"> Razem: <%=@suma %> </td>
+                        <td colspan="3" align="right" class="table-dark"> Razem: <%=@suma %> </td>
                       </tr>
                       </tbody>
                     </table>
@@ -80,11 +81,11 @@
           </table>
         </td>
       </tr>
-
+      <% end %>
     <% end %>
   </tbody>
 </table>
-  <%= link_to 'New Customer', new_customer_path, class: "btn btn-primary"  %>
+
 </div>
 
 

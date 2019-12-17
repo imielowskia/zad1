@@ -28,7 +28,8 @@ class InvoiceItemsController < ApplicationController
 
     respond_to do |format|
       if @invoice_item.save
-        format.html { redirect_to @invoice_item, notice: 'Invoice item was successfully created.' }
+        format.html { redirect_to request.referer }
+        #format.html { redirect_to @invoice_item, notice: 'Invoice item was successfully created.' }
         format.json { render :show, status: :created, location: @invoice_item }
       else
         format.html { render :new }
