@@ -1,18 +1,10 @@
 <%= form_for(invoice, local: true) do |form| %>
-
-  <%= form.hidden_field :customer_id  %>
-  <%= @customer.name %>
+  <%= form.hidden_field :customer_id %>
   <div class="field">
+
     <%= form.label :data %>
     <%= form.date_select :data %>
-  </div>
 
-  <div class="field">
-    <%= form.label :customer_id %>
-    <%= form.collection_select :customer_id, Customer.all, :id, :name  %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class=>"btn btn-sm btn-primary" %>
   </div>
 <% end %>

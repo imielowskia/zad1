@@ -28,7 +28,9 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.save
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
+        format.html {redirect_to request.referer}
+        #format.html { redirect_to controller: 'customers', action: 'show', id: @invoice.customer_id }
+        #format.html { render 'customers/show' , customer_id: @invoice.customer_id, status: :created, notice: 'Invoice was successfully created.aaaa' }
         format.json { render :show, status: :created, location: @invoice }
       else
         format.html { render :new }
@@ -42,6 +44,7 @@ class InvoicesController < ApplicationController
   def update
     respond_to do |format|
       if @invoice.update(invoice_params)
+
         format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
         format.json { render :show, status: :ok, location: @invoice }
       else
@@ -56,7 +59,8 @@ class InvoicesController < ApplicationController
   def destroy
     @invoice.destroy
     respond_to do |format|
-      format.html { redirect_to invoices_url, notice: 'Invoice was successfully destroyed.' }
+      format.html {redirect_to request.referer}
+      #format.html { redirect_to invoices_url, notice: 'Invoice was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
